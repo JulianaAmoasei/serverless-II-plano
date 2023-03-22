@@ -78,7 +78,15 @@ Para executar e fazer o deploy do projeto na AWS, execute o seguinte comando no 
 ```
 Você deverá estar na pasta-raiz do projeto, onde está localizado o arquivo `Infraestrutura.sh`. Este script fará a instalação do Terraform, a execução dos scripts do Terraform e o deploy do projeto na AWS a partir de uma imagem Docker no DockerHub.
 
-Após a finalização do processo, a URL base da API estará disponível em XXXXXXXXXXXXX
+Após a finalização do processo, a URL base da API será exibida no terminal:
+
+```
+Outputs:
+
+IP_alb = "curso-serverless2-api-<idDaURL>.us-east-1.elb.amazonaws.com"
+```
+Copie e cole a URL para ser utilizada durante o curso.
+Caso seja necessário, você pode consultar a URL no console da AWS. No menu de "Services" no canto superior esquerdo, acesse EC2 > Load balancers > curso-serverless-2 > DNS Name.
 
 > Importante: Para evitar cobranças desnecessárias de serviços da AWS, **mantenha a API no ar apenas enquanto estiver acompanhando o curso.** Para derrubar a API, execute o script `./Desligar.sh` na pasta-raiz do projeto.
 
