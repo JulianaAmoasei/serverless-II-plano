@@ -31,7 +31,7 @@ resource "aws_ecs_task_definition" "serverless2-API" {
     [
       {
         "name"      = "producao"
-        "image"     = "aquijuz/curso-serverless2:v1"
+        "image"     = "aquijuz/curso-serverless:v1"
         "cpu"       = 256
         "memory"    = 512
         "essential" = true
