@@ -72,15 +72,7 @@ Na opção `Default output format:` selecione `json`.
 
 ## Execução e deploy
 
-### Gerando certificados para o DocumentDB
-
-Este projeto utiliza como banco de dados o DocumentDB da própria AWS. Para autenticar a conexão da API com o banco é necessário gerar um certificado localmente e adicionar o arquivo à pasta-raiz do projeto. Siga os passos:
-
-1. Certifique-se que está em um ambiente logado da AWS;
-2. Acesse o [link para gerar o certificado](https://s3.amazonaws.com/rds-downloads/rds-combined-ca-bundle.pem). O navegador deverá baixar automaticamente o arquivo `rds-combined-ca-bundle.pem` na pasta padrão para Downloads de seu sistema operacional. 
-3. Acesse esta pasta e transfira o arquivo `rds-combined-ca-bundle.pem` para a pasta raiz do projeto.
-
-Após este processo, a pasta-raiz do projeto deverá ter a seguinte estrutura:
+A pasta-raiz do projeto deverá ter a seguinte estrutura:
 
 ```
 .
@@ -100,15 +92,12 @@ Após este processo, a pasta-raiz do projeto deverá ter a seguinte estrutura:
 │   └── VPC.tf
 ├── Desligar.sh
 ├── Infraestrutura.sh
-├── rds-combined-ca-bundle.pem
 └── README.md
 
-3 directories, 15 files
+3 directories, 14 files
 ```
-
-### Executando o deploy via Terraform
-
 Para executar e fazer o deploy do projeto na AWS, execute o seguinte comando no terminal:
+
 ```
 ./Infraestrutura.sh
 ```
