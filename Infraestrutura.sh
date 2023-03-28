@@ -19,5 +19,5 @@ else
     echo "brew install hashicorp/tap/terraform"
     echo "terraform -chdir=env/prod init"
     echo "terraform -chdir=env/prod apply -auto-approve"
-    echo "Se você estiver no Windows o WSL é necessario echo "Se você estiver no Windows o WSL é necessário para a execução, então por favor instale o WSL como citado no curso"
+    echo "Se você estiver no Windows o WSL é necessário para a execução, então por favor instale o WSL como citado no curso"
 fi
