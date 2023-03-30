@@ -34,15 +34,6 @@ Com o WSL instalado, siga os passos abaixo:
 3. A partir da pasta `home` do ambiente Linux, você poderá criar ou selecionar subpastas usando `cd` ou `mkdir`, caso deseje organizar seus projetos;
 4. Clonar o repositório do projeto no local desejado dentro do WSL, usando o comando usual `git clone <endereço do repositório>`.
 
-Recomendamos o uso do Visual Studio Code (VSC) para melhor acompanhamento dos vídeos. Para conectar o VSC ao WSL e abrir a pasta local do projeto (após clonar), siga os passos:
-
-1. Na janela principal do VSC, clique no botão verde no canto inferior esquerdo, sinalizado com `><`, e selecione no menu a opção `Install additional remote extensions`;
-2. O VSC abrirá o menu lateral de extensões. Selecione a opção `WSL` na lista e clique no botão para instalar.
-
-A partir daí o VSC deverá abrir uma janela conectada ao WSL, indicada por uma barra na cor roxa na parte inferior da janela. Você poderá acessar as pastas internas locais do WSL e também utilizar os comandos unix no terminal.
-
-Nos próximos usos, a extensão já deve estar instalada, sendo necessário apenas se conectar a uma janela remota.
-
 ### Criação de perfil e user na AWS
 
 Antes de instalar a interface de linha de comando da AWS (aws-cli) que usaremos no curso, você precisa ter uma conta ativa na AWS. 
@@ -57,21 +48,33 @@ Siga estes passos para criar e acessar chaves ou siga a [documentação](https:/
 
 1. Após criar um usuário *root*, faça o login e acesse o console da AWS;
 2. Na página principal do console, acesse o menu IAM (caso não esteja visível, procure por IAM no campo de busca de serviços na parte superior da tela);
+
+![Imagem da tela do console da AWS. O menu "services", localizado na parte superior da tela, está selecionado e o campo de texto está preenchido com a palavra "iam". Abaixo do campo de texto, um submenu está aberto com as correpondências da busca. Em primeiro lugar está um link para o recurso buscado, "IAM". Abaixo, outras ocorrências: "IAM Identity Center", "Resource Access Manager" e "Serverless Application Repository".](./assets/iam.png)
+
 3. Dentro da seção IAM, no menu à direita, acesse "Users";
 4. Na próxima tela "Usuários", clique em "Add users"/"Adicionar usuários", no canto superior direito, para criar um novo usuário IAM;
-5. Na tela "Especificar detalhes do usuário", preencha o nome do novo usuário e deixe em branco a opção de fornecer acesso ao console de gerenciamento IAM. Clique em "Próximo";
 
-<imagem>
+![Tela do menu "Identity and Access Manager (IAM)". Na parte esquerda, um menu vertical com as opções "Gerenciamento de Acesso", "Grupos de usuários", "Usuários", "Funções", "Políticas", "Provedores de identidade" e "Configurações de conta". A opção "Usuários" está selecionada. Na parte central da tela, uma seção "usuários", com um campo vazio de listagem de usuários e a mensagem "não há recursos para exibir". Na direita do campo, um botão azul "Adicionar usuários".](./assets/adusers.JPG)
+
+5. Na tela "Especificar detalhes do usuário", preencha o nome do novo usuário e deixe em branco a opção de fornecer acesso ao console de gerenciamento IAM. O nome do usuário para este projeto pode ser relacionado ao curso para facilitar a identificação, como "serverless". Clique em "Próximo";
+
+![Janela do menu "Criar usuários", com o título "Especificar detalhes do usuário", abaixo o campo de texto "Nome do usuário", seguido do checkbox "Fornecer acesso para os usuários ao console de gerenciamento da AWS - opcional". O checkbox não está marcado. Abaixo, os botões "cancelar" e "próximo".](./assets/iam.JPG)
 
 6. Na tela "add permissions"/"Definir permissões", selecionar a opção "Attach policies directly"/"Anexar políticas diretamente";
 7. Na lista abaixo, selecione a opção "AdministratorAccess";
 
-<imagem>
+![Janela do menu "Definir permissões" da AWS. Na parte superior da tela, três opções de botão de rádio: "Adicionar usuário ao grupo", "Copiar permissões" e "Anexar políticas diretamente". A última opção está selecionada. Abaixo, uma listagem de checkboxes com o título "Política de permissões". A segunda opção está marcada, com o nome "AdministratorAccess".](./assets/3-adpolitcs.JPG)
 
 8. Confirmar clicando em "Next"/"Próximo" na parte de baixo da tela;
 9. Revise as informações e clique em "Create user"/"Criar usuário";
 10. Você voltará para a tela de "Users". Clique novamente no usuário recém-criado na lista e acesse o submenu "Security credentials"/"Credenciais de segurança";
+
+![Tela de menu de usuário IAM da AWS. Na parte superior está o nome do usuário criado "serverless". Abaixo, seção "Resumo" com informações sobre o usuário como data de criação e ARN. Abaixo, um menu horizontal com as opções "Permissões", "Grupos", "Etiquetas", "Credenciais de acesso" e "Consultor de acesso". A opção "Credenciais de acesso" está selecionada.](./assets/4.JPG)
+
 11. Role a tela até a opção "Access keys"/"Chaves de acesso". Clique em "Create access key"/"Criar chaves de acesso";
+
+![Parte da tela do menu "Credenciais de acesso", mostrando a opção "Chaves de acesso". Abaixo, a informação "Nenhuma chave de acesso" e o botão "criar chave de acesso".](./assets/5.JPG)
+
 12. Na próxima tela, selecione a opção "Command Line Interface (CLI)" e avance;
 13. As tags são opcionais, você pode deixar em branco e clicar em "Create Access key"/"Criar chave de acesso";
 14. Copie **temporariamente** para um lugar seguro as duas informações (chave de acesso e chave de acesso secreta) ou faça o download do arquivo .csv até finalizarmos a configuração do CLI.
@@ -104,9 +107,9 @@ AWS Secret Access Key [************************]: SUACHAVESECRETAAQUI
 ```
 Na opção `Default region name:` se você estiver no Brasil, insira `us-east-1`. Caso você não esteja no Brasil, deverá verificar na documentação da AWS em qual região você está.
 
-Na opção `Default output format:` selecione `json`.
+Na opção `Default output format:` insira `json`.
 
-> **IMPORTANTE:** Estas configurações ficam armazenadas **localmente** em seu computador. Para saber mais sobre como as credenciais funcionam e como podem ser acessadas e modificadas, acesse a [documentação da AWS](https://docs.aws.amazon.com/pt_br/cli/latest/userguide/cli-configure-files.html). 
+> **IMPORTANTE:** Estas configurações ficam armazenadas **localmente** em seu computador. Para saber mais sobre como as credenciais funcionam e como podem ser acessadas e modificadas, acesse a [documentação da AWS](https://docs.aws.amazon.com/pt_br/cli/latest/userguide/cli-configure-files.html).
 
 ## Execução e deploy
 
